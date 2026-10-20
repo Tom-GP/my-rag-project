@@ -6,19 +6,19 @@ The project features a full LangChain RAG pipeline powered by Google Gemini mode
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Document Grounding**: Answers are strictly grounded on the official company handbook (`TechCorp_Official_Employee_Handbook.pdf`), preventing hallucinations.
 - **Dual Interface**:
-  - 🌐 **Streamlit Web UI**: Clean, interactive chat UI with message bubbles and loading indicators.
-  - 💻 **Terminal CLI**: Fast command-line loop for instant terminal testing and Q&A.
+  - **Streamlit Web UI**: Clean, interactive chat UI with message bubbles and loading indicators.
+  - **Terminal CLI**: Fast command-line loop for instant terminal testing and Q&A.
 - **Chroma Vector Store**: Document embeddings are indexed and persisted locally using Chroma DB.
 - **Powered by Google Gemini**: Utilizes `gemini-embedding-001` for vector representations and `gemini-3.5-flash-lite` for concise, deterministic, and fast responses.
 - **LangChain Expression Language (LCEL)**: Modular and composable pipeline combining retrieval, formatting, prompt engineering, and LLM generation.
 
 ---
 
-## 🛠️ Architecture & Tech Stack
+## Architecture & Tech Stack
 
 ```text
 [ TechCorp Handbook (PDF) ]
@@ -54,7 +54,7 @@ The project features a full LangChain RAG pipeline powered by Google Gemini mode
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 my-rag-project/
@@ -69,7 +69,7 @@ my-rag-project/
 
 ---
 
-## ⚙️ Prerequisites & Setup
+## Prerequisites & Setup
 
 ### 1. Clone the Repository
 ```bash
@@ -102,7 +102,7 @@ GEMINI-API-KEY=your_gemini_api_key_here
 
 ---
 
-## 🏃 Usage
+## Usage
 
 ### Option 1: Run the Streamlit Web Application
 Launch the interactive web UI:
@@ -120,7 +120,7 @@ Type your question when prompted (e.g., *"What days can I work from home?"*). Ty
 
 ---
 
-## 💡 How It Works
+## How It Works
 
 1. **Document Loading**: `rag_app.py` reads `TechCorp_Official_Employee_Handbook.pdf` via `PyPDFLoader`.
 2. **Chunking**: Text is split into 500-character segments with a 50-character overlap using `RecursiveCharacterTextSplitter`.

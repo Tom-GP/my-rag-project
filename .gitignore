@@ -1,0 +1,11 @@
+# virtual environment
+\.venv
+
+# env files
+.env
+
+# pdf files
+TechCorp_Official_Employee_Handbook.pdf
+
+# database files
+\chroma_db

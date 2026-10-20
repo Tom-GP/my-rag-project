@@ -1,3 +1,4 @@
+from httpcore import __name
 import os
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFLoader
@@ -35,7 +36,10 @@ chunks = text_splitter.split_documents(document)
 
 # Creating vector database
 print("\nCreating the vector databases...\n")
-embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001", google_api_key=api_key)
+embeddings = GoogleGenerativeAIEmbeddings(
+    model="models/gemini-embedding-001",
+    google_api_key=api_key
+)
 vector_db = Chroma.from_documents(
     documents=chunks,
     embedding=embeddings,
@@ -60,7 +64,11 @@ prompt = PromptTemplate.from_template(template)
 # print(prompt)
 
 # Initilize the free gemini model tier
-llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite", temperature=0, google_api_key=api_key)
+llm = ChatGoogleGenerativeAI(
+    model="gemini-3.5-flash-lite",
+    temperature=0,
+    google_api_key=api_key
+)
 
 # Helper function to build a single string chunks separated by 2 nextlines
 def format_docs(docs):
@@ -87,26 +95,29 @@ else:
 print(f"Answer: {clean_text}")
 """
 
-# Continuous chatting
-print("\n-------------Chatbot started------------")
-print("Type 'exit' or 'quit' to stop.")
 
-while True:
-    # 1. User inputs
-    user_input = input("\nYour question: ")
+if __name__ == "__main__":
+    
+    # Continuous chatting
+    print("\n-------------Chatbot started------------")
+    print("Type 'exit' or 'quit' to stop.")
 
-    # 2. Checking whether the input is break statement
-    if user_input in ['exit', 'quit']:
-        break
+    while True:
+        # 1. User inputs
+        user_input = input("\nYour question: ")
 
-    # 3. Send the user input to the RAG pipeline
-    response = rag_chain.invoke(user_input)
+        # 2. Checking whether the input is break statement
+        if user_input in ['exit', 'quit']:
+            break
 
-    # 4. Retrieving the text part only from the response if the response is a list
-    if isinstance(response.content, list):
-        clean_text = response.content[0]['text']
-    else:
-        clean_text = response.content
+        # 3. Send the user input to the RAG pipeline
+        response = rag_chain.invoke(user_input)
 
-    # 5. Printing the LLM response
-    print(f"Answer: {clean_text}")
+        # 4. Retrieving the text part only from the response if the response is a list
+        if isinstance(response.content, list):
+            clean_text = response.content[0]['text']
+        else:
+            clean_text = response.content
+
+        # 5. Printing the LLM response
+        print(f"Answer: {clean_text}")

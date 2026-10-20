@@ -9,3 +9,6 @@ TechCorp_Official_Employee_Handbook.pdf
 
 # database files
 \chroma_db
+
+# cache files
+__pycache__
